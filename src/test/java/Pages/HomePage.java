@@ -9,8 +9,12 @@ public class HomePage {
 	@FindBy(className="airship-btn airship-btn-deny")
 	WebElement btnDenySubscribe;
 	
-	@FindBy(className="dy-modal-wrapper")
-	WebElement btnCloseBanner;
+	//Sirve le da click al banner y pasa a la siguiente pantalla
+	/*@FindBy(className="dy-modal-wrapper")
+	WebElement btnCloseBanner;*/
+	
+	@FindBy(className="dy-lb-close")
+	WebElement btnCloseBanner2;
 	
 	@FindBy(id="testId-SearchBar-Input")
 	WebElement navSearch;
@@ -24,15 +28,23 @@ public class HomePage {
 	@FindBy(xpath="//a[@id='linkButton']")
 	WebElement btnBasket;
 	
-		
+	@FindBy(id="testId-HamburgerBtn-toggle")
+	WebElement btnCategories;
+
 	WebDriver driver;
 	
 	public HomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void clickOnModal() {
-		btnCloseBanner.click();
+	public void clickOnModal(WebElement closeButton) {
+		if(closeButton.isDisplayed()) 
+			btnCloseBanner2.click();
+	}
+	
+	public void clickOnModal2() {
+		if(btnCloseBanner2.isDisplayed()) 
+			btnCloseBanner2.click();
 	}
 	
 	public void searchItem(String item) {
@@ -50,6 +62,16 @@ public class HomePage {
 	public void clickOnBasket() {
 		btnBasket.click();		
 	}
+	
+	public void clickOnCategories() {
+		btnCategories.click();
+	}
+	
+	public void nonSubscribe() {
+		btnDenySubscribe.click();
+	}
+	
+	
 	
 
 

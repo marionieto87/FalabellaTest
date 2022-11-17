@@ -22,6 +22,12 @@ public class LoginPage {
 	@FindBy(xpath="//div[@id='']")
 	WebElement txtLoginFailed;
 	
+	@FindBy(xpath="//li[@id='testId-UserAction-userinfo']//div[@id='']")
+	WebElement btnUserLogued;
+	
+	@FindBy(xpath="//a[contains(text(),'Mi Cuenta')]")
+	WebElement selMyAccount;
+	
 	WebDriver driver;
 	
 	public LoginPage(WebDriver driver) {
@@ -37,5 +43,15 @@ public class LoginPage {
 	public void clickOnLogin() {
 		btnLogin.click();
 	}
+	
+	public void goProfile() {
+		btnUserLogued.click();
+	}
+	
+	public void myAccount() {
+		selMyAccount.click();
+	}
+	
+	
 	
 }

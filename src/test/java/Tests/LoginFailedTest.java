@@ -1,19 +1,24 @@
 package Tests;
 
-import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
+import Pages.HomePage;
 import Pages.LoginPage;
 
 public class LoginFailedTest {
 	WebDriver driver;
 	String driverPath = "..\\Falabella\\Drivers\\chromedriver.exe";
 	String url = "https://www.falabella.com.co/falabella-co";
+	private static WebElement closeButton = null;
 	
 	/*Titulo: Prueba de automatización.
 	 * Autor: Carlos Mario Nieto.
@@ -30,10 +35,16 @@ public class LoginFailedTest {
 	@Test
 	public void loginFailed() {
 		LoginPage loginFailed = new LoginPage(driver);
-		driver.manage().timeouts().implicitlyWait(60000, TimeUnit.SECONDS);
-		loginFailed.fillCredentials("marionieto87@hotmail.com", "imposiblese");
+		HomePage item = new HomePage(driver);
+		WebDriverWait wait = new WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
+		//driver.findElement(By.className("dy-lb-close")).click();
+		
+		closeButton = driver.findElement(By.className("dy-lb-close"));
+		item.clickOnModal(closeButton);
+		
+		loginFailed.fillCredentials("marionieto87@hotmail.com", "f6158d6fa");
 		loginFailed.clickOnLogin();
-		driver.manage().timeouts().implicitlyWait(10000, TimeUnit.SECONDS);
 	}
 
 	
