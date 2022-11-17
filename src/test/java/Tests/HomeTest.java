@@ -6,8 +6,6 @@ import org.testng.annotations.AfterSuite;
 //import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,9 +46,9 @@ public class HomeTest {
 		item.clickOnModal(closeButton);
 		item.searchItem("iPhone");
 		item.clickOnSearch();
-		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.SECONDS);
 		item.addToBasket();
-		item.clickOnBasket();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='linkButton']")));
+		driver.findElement(By.xpath("//a[@id='linkButton']")).click();
 		String ActualTitle = driver.findElement(By.className("fb-product__title")).getText();
 		String ExpectedTitle = "iPhone 11 128 GB";
 		Assert.assertEquals(ExpectedTitle, ActualTitle, "El Producto se agrego al carrito");

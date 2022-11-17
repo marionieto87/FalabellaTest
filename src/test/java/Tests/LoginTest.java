@@ -65,5 +65,6 @@ public class LoginTest {
 	@AfterSuite
 	public void tearDown() {
 		driver.close();
+		driver.quit();
 	}
 }

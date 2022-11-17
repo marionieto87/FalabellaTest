@@ -36,12 +36,11 @@ public class ChangePersonalDataTest {
 		HomePage item = new HomePage(driver);
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
-
 		closeButton = driver.findElement(By.className("dy-lb-close"));
 		item.clickOnModal(closeButton);
 		
 		LoginPage login = new LoginPage(driver);
-		login.fillCredentials("marionieto87@hotmail.com", "imposible");
+		login.fillCredentials("marionieto87@hotmail.com", "Imposible87*");
 		login.clickOnLogin();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@id='testId-UserAction-userinfo']//div[@id='']")));
 		driver.findElement(By.xpath("//li[@id='testId-UserAction-userinfo']//div[@id='']")).click();
