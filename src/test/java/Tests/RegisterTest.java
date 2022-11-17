@@ -6,13 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import Pages.HomePage;
 import Pages.RegisterPage;
-import org.openqa.selenium.WebElement;
 
 public class RegisterTest {
 	WebDriver driver;
@@ -41,7 +41,7 @@ public class RegisterTest {
 	public void register() {
 		RegisterPage register = new RegisterPage(driver);
 		HomePage item = new HomePage(driver);
-		WebDriverWait wait = new WebDriverWait(driver,20);
+		WebDriverWait wait = new WebDriverWait(driver,40);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
 		//driver.findElement(By.className("dy-lb-close")).click();
 		
@@ -50,8 +50,15 @@ public class RegisterTest {
 		
 		register.clickOnLogin();
 		register.clickOnNewRegister();
-		register.fillDataNewUser("Adriana", "Soto", "Cédula de Ciudadanía", "42058346", "3127842513", "adrimar7543@gmail.com", "Falabella123*");
+		register.fillDataNewUser("Adriana", "Soto", "Cédula de Ciudadanía", "42058346", "3127842513", "niloro9131@invodua.com", "Falabella123*");
 		register.clickOnRegister();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'¡Felicitaciones!')]")));
+		driver.findElement(By.xpath("//h1[contains(text(),'¡Felicitaciones!')]"));
+		String ActualTitle = driver.findElement(By.xpath("//h1[contains(text(),'¡Felicitaciones!')]")).getText();
+		String ExpectedTitle = "¡Felicitaciones!";
+		Assert.assertEquals(ExpectedTitle, ActualTitle, "Credenciales correctas");
+		System.out.println("El usuario fue creado exitosamente");
+		
 	}
 	
 	@AfterSuite

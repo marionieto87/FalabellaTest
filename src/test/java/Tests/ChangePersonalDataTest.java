@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 //import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
@@ -31,11 +32,10 @@ public class ChangePersonalDataTest {
 	}
 	
 	@Test
-	public void changeCellphone() {
+	public void changeName() {
 		HomePage item = new HomePage(driver);
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
-		/*driver.findElement(By.className("dy-lb-close")).click();*/
 
 		closeButton = driver.findElement(By.className("dy-lb-close"));
 		item.clickOnModal(closeButton);
@@ -49,11 +49,16 @@ public class ChangePersonalDataTest {
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("testId-Input-firstName")));
 		driver.findElement(By.id("testId-Input-firstName")).click();
-		//driver.findElement(By.id("testId-Input-firstName")).clear();
 		
-		
-		InfoPersonalPage phone = new InfoPersonalPage(driver);
-		phone.changeNameUser("Carlos");
+		InfoPersonalPage changes = new InfoPersonalPage(driver);
+		changes.changeNameUser(" Mario");
+		changes.saveChanges();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'Cambios guardados con éxito')]")));
+		driver.findElement(By.xpath("//h1[contains(text(),'Cambios guardados con éxito')]"));
+		String ActualTitle = driver.findElement(By.xpath("//h1[contains(text(),'Cambios guardados con éxito')]")).getText();
+		String ExpectedTitle = "Cambios guardados con éxito";
+		Assert.assertEquals(ExpectedTitle, ActualTitle, "El cambio se realizo");
+		System.out.println("El cambio de nombre se realizo exitosamente");
 	}
 	
 	/* Descripción: Cierra el navegador una ves se termina la prueba.*/

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -45,13 +46,18 @@ public class LoginTest {
 		closeButton = driver.findElement(By.className("dy-lb-close"));
 		item.clickOnModal(closeButton);
 		LoginPage login = new LoginPage(driver);
-		login.fillCredentials("marionieto87@hotmail.com", "imposible");
+		login.fillCredentials("marionieto87@hotmail.com", "Imposible87*");
 		login.clickOnLogin();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@id='testId-UserAction-userinfo']//div[@id='']")));
 		driver.findElement(By.xpath("//li[@id='testId-UserAction-userinfo']//div[@id='']")).click();
 		login.myAccount();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//header/div[3]/div[1]/div[4]/ul[1]/li[1]/div[1]/div[2]")));
 		driver.findElement(By.xpath("//header/div[3]/div[1]/div[4]/ul[1]/li[1]/div[1]/div[2]")).click();
+		String currentUrl = driver.getCurrentUrl();
+		String ExpectedUrl = "https://www.falabella.com.co/falabella-co/myaccount/userPersonalInformation";
+		Assert.assertEquals(ExpectedUrl, currentUrl, "Credenciales correctas");
+		System.out.println("El usuario inicio sesion con éxito.");
+		
 	}
 
 	

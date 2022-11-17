@@ -1,6 +1,7 @@
 package Tests;
 
 
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 //import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -43,14 +44,17 @@ public class HomeTest {
 		HomePage item = new HomePage(driver);
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
-		driver.findElement(By.className("dy-lb-close")).click();
-		//closeButton = driver.findElement(By.className("dy-lb-close"));
-		//item.clickOnModal(closeButton);
+		closeButton = driver.findElement(By.className("dy-lb-close"));
+		item.clickOnModal(closeButton);
 		item.searchItem("iPhone");
 		item.clickOnSearch();
 		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.SECONDS);
 		item.addToBasket();
 		item.clickOnBasket();
+		String ActualTitle = driver.findElement(By.className("fb-product__title")).getText();
+		String ExpectedTitle = "iPhone 11 128 GB";
+		Assert.assertEquals(ExpectedTitle, ActualTitle, "El Producto se agrego al carrito");
+		System.out.println("El producto se añadio correctamente al carrito de compra");
 	}
 	
 	

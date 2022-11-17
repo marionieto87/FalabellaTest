@@ -14,17 +14,23 @@ public class InfoPersonalPage {
 	@FindBy(id="testId-Input-firstName")
 	WebElement txtName;
 	
+	@FindBy(xpath="//button[@id='testId-Button-submit']")
+	WebElement btnSaveChangesProfile;
+	
 	
 	public InfoPersonalPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 	
 	public void changeNameUser(String name) {
-		 System.out.println("Pep");
 		txtName.sendKeys(name);
 	}
 	
 	public void changePhoneNumber(String phone) {
 		txtPhoneNumber.sendKeys(phone);
+	}
+	
+	public void saveChanges() {
+		btnSaveChangesProfile.click();
 	}
 }
