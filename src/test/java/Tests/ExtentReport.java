@@ -160,7 +160,7 @@ public class ExtentReport {
 		RegisterPage register = new RegisterPage(driver);
 		register.clickOnLogin();
 		register.clickOnNewRegister();
-		register.fillDataNewUser("Adriana", "Soto", "Cédula de Ciudadanía", "42058346", "3127842513", "jenvby234@jernang.com", "Falabella123*");
+		register.fillDataNewUser("Adriana", "Soto", "Cédula de Ciudadanía", "42058346", "3127842513", "jenvby274@jermang.com", "Falabella123*");
 		test4.pass("Se llenaron todos los datos requeridos y se aceptan las condiciones.");
 		register.clickOnRegister();
 		test4.pass("Se espera el mensaje de que el usuario se creo correctamente.");
@@ -229,7 +229,7 @@ public class ExtentReport {
 		
 		
 		/*Se crea el test Numero 5
-         * TC03 > Usuario se loguea con credenciales incorrectas.
+         * TC03 > Usuario intenta loguearse en el sistema con credenciales incorrectas.
          */
 		ExtentTest test3 = extent.createTest("TC03");
 		//Se inicia el navegador Chrome y se la la URL a la que se debe dirigir.

@@ -10,3 +10,10 @@
 - el arhivo RegisterTest.java siempre debe digitarse un correo electronico nuevo para poder ejecutarlo
 
 -
+
+# Para ejecutar la prueba.
+- se debe desplegar todo en Eclipse y ubicar el archivo ExtentReport.java y dar click derecho en Run as/ Java application.
+
+- Cada que se ejecute nuevamente el archivo ExtentReport.java se debe cambiar el correo electronico ubicado en la linea 163 y guardar los cambios por uno diferente para crear usuarios diferentes.
+
+- 
