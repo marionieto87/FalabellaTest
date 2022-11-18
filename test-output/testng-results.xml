@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-11-17T17:56:42 COT" name="Default suite" finished-at="2022-11-17T17:56:46 COT" duration-ms="3998">
+  <suite started-at="2022-11-17T19:00:24 COT" name="Default suite" finished-at="2022-11-17T19:00:35 COT" duration-ms="10789">
     <groups>
     </groups>
-    <test started-at="2022-11-17T17:56:42 COT" name="Default test" finished-at="2022-11-17T17:56:46 COT" duration-ms="3998">
-      <class name="Tests.RegisterTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:Tests.RegisterTest@1e04fa0a]" started-at="2022-11-17T17:56:34 COT" name="setUp" finished-at="2022-11-17T17:56:42 COT" duration-ms="8461" status="PASS">
+    <test started-at="2022-11-17T19:00:24 COT" name="Default test" finished-at="2022-11-17T19:00:35 COT" duration-ms="10789">
+      <class name="Tests.HomeTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:Tests.HomeTest@1e04fa0a]" started-at="2022-11-17T19:00:14 COT" name="setUp" finished-at="2022-11-17T19:00:24 COT" duration-ms="9964" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="register()[pri:0, instance:Tests.RegisterTest@1e04fa0a]" started-at="2022-11-17T17:56:42 COT" name="register" finished-at="2022-11-17T17:56:46 COT" duration-ms="3936" status="PASS">
+        <test-method signature="search()[pri:0, instance:Tests.HomeTest@1e04fa0a]" started-at="2022-11-17T19:00:24 COT" name="search" finished-at="2022-11-17T19:00:35 COT" duration-ms="10707" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- register -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:Tests.RegisterTest@1e04fa0a]" started-at="2022-11-17T17:56:46 COT" name="tearDown" finished-at="2022-11-17T17:56:47 COT" duration-ms="1175" status="PASS">
+        </test-method> <!-- search -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:Tests.HomeTest@1e04fa0a]" started-at="2022-11-17T19:00:35 COT" name="tearDown" finished-at="2022-11-17T19:00:35 COT" duration-ms="249" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- Tests.RegisterTest -->
+      </class> <!-- Tests.HomeTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

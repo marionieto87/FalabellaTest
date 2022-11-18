@@ -41,8 +41,12 @@ public class HomeTest {
 	public void search() {
 		HomePage item = new HomePage(driver);
 		WebDriverWait wait = new WebDriverWait(driver,20);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("testId-search-wrapper")));
+		closeButton = driver.findElement(By.id("testId-search-wrapper"));
+		/*
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
-		closeButton = driver.findElement(By.className("dy-lb-close"));
+		closeButton = driver.findElement(By.className("dy-lb-close"));*/
 		item.clickOnModal(closeButton);
 		item.searchItem("iPhone");
 		item.clickOnSearch();
