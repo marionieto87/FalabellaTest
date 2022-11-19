@@ -103,14 +103,14 @@ public class ExtentReport {
 		/*Se instancia la clase login para diligenciar las credenciales
 		 * y poder iniciar sesion exitosamente en la pagina
 		 */
-		LoginPage login = new LoginPage(driver);
-		login.fillCredentials("marionieto87@hotmail.com", "Imposible87*");
+		LoginPage login2 = new LoginPage(driver);
+		login2.fillCredentials("marionieto87@hotmail.com", "Imposible87*");
 		test2.pass("Usuario digita las credenciales para loguearse.");
-		login.clickOnLogin();
+		login2.clickOnLogin();
 		//Se inicia un explicit wait esperando el login exitoso del usuario y se le da click.
 		wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@id='testId-UserAction-userinfo']//div[@id='']")));
 		driver.findElement(By.xpath("//li[@id='testId-UserAction-userinfo']//div[@id='']")).click();
-		login.myAccount();
+		login2.myAccount();
 		test2.pass("El usuario se logue satisfactoriamente en el sistema");
 		/*Se inicia un explicit wait para esperar que el usuario logueado
 		 * pueda ir al perfil para validar que si ingreso correctamente.
@@ -132,104 +132,9 @@ public class ExtentReport {
 		test2.info("TC02 completed.");
 		
 		
+		
         /*Se crea el test Numero 3
-         * TC04 > Usuario nuevo se registra satisfactoriamente en el sistema.
-         */
-		ExtentTest test4 = extent.createTest("TC04");
-		//Se inicia el navegador Chrome y se la la URL a la que se debe dirigir.
-		System.setProperty("webdriver.chrome.driver", driverPath);
-		driver = new ChromeDriver();
-		driver.get(url);
-		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
-		
-		test4.log(Status.INFO, "Starting Test Case 04");
-		HomePage item4 = new HomePage(driver);
-		
-		//Se inicia un explicit wait para esperar la ventana emergente y cerrarla.
-		WebDriverWait wait4 = new WebDriverWait(driver,40);
-		wait4.until(ExpectedConditions.visibilityOfElementLocated(By.id("testId-search-wrapper")));
-		closeButton = driver.findElement(By.id("testId-search-wrapper"));
-		/*wait4.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
-		closeButton = driver.findElement(By.className("dy-lb-close"));*/
-		item4.clickOnModal(closeButton);
-		test4.pass("Se cerro la ventana modal exitosamente.");
-		/*Se instancia la clase register para diligenciar los datos solicitados
-		 * para el registro de un usuario nuevo.
-		 */		
-		RegisterPage register = new RegisterPage(driver);
-		register.clickOnLogin();
-		register.clickOnNewRegister();
-		register.fillDataNewUser("Adriana", "Soto", "Cédula de Ciudadanía", "42058346", "3127842513", "jenvby274@jermang.com", "Falabella123*");
-		test4.pass("Se llenaron todos los datos requeridos y se aceptan las condiciones.");
-		register.clickOnRegister();
-		test4.pass("Se espera el mensaje de que el usuario se creo correctamente.");
-
-		System.out.println("El usuario fue creado exitosamente.");
-		
-		//Se cierra el navegador y la sesion en el servidor.
-		driver.close();
-		driver.quit();
-		System.out.println("El usuario se logro registrar exitosamente en el sistema.");
-		test4.info("TC04 completed.");
-		
-		
-		
-        /*Se crea el test Numero 4
-         * TC05 > Usuario registrado cambia el nombre en el perfil.
-         */
-		ExtentTest test5 = extent.createTest("TC05");
-		//Se inicia el navegador Chrome y se la la URL a la que se debe dirigir.
-		System.setProperty("webdriver.chrome.driver", driverPath);
-		driver = new ChromeDriver();
-		driver.get(url);
-		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
-		
-		test5.log(Status.INFO, "Starting Test Case 04");
-		HomePage item5 = new HomePage(driver);
-		//Se inicia un explicit wait para esperar la ventana emergente y cerrarla.
-		WebDriverWait wait5 = new WebDriverWait(driver,20);
-		wait5.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
-		closeButton = driver.findElement(By.className("dy-lb-close"));
-		item5.clickOnModal(closeButton);
-		test5.pass("Se cerro la ventana modal exitosamente.");
-		/*Se instancia la clase login5 para iniciar sesion en el sistema
-		 */		
-		LoginPage login5 = new LoginPage(driver);
-		login5.fillCredentials("marionieto87@hotmail.com", "Imposible87*");
-		login5.clickOnLogin();
-		test5.pass("Se inicio sesion correctamente en el sistema.");
-		wait5.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@id='testId-UserAction-userinfo']//div[@id='']")));
-		driver.findElement(By.xpath("//li[@id='testId-UserAction-userinfo']//div[@id='']")).click();
-		login5.myAccount();
-		test5.pass("el usuario va a mi perfil correctamente");
-		wait5.until(ExpectedConditions.visibilityOfElementLocated(By.id("testId-Input-firstName")));
-		driver.findElement(By.id("testId-Input-firstName")).click();
-		InfoPersonalPage changes = new InfoPersonalPage(driver);
-		changes.changeNameUser(" Mario");
-		test5.pass("el usuario realiza el cambio y guarda los cambios");
-		changes.saveChanges();
-		wait5.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'Cambios guardados con éxito')]")));
-		driver.findElement(By.xpath("//h1[contains(text(),'Cambios guardados con éxito')]"));
-		/*Se obtiene el mensaje del elemento indicando que los cambios fueron guardados
-		 * con exito y se compara con el esperado para validar que los cambios fueron satisfactorios.
-		 */
-		String ActualTitle5 = driver.findElement(By.xpath("//h1[contains(text(),'Cambios guardados con éxito')]")).getText();
-		String ExpectedTitle5 = "Cambios guardados con éxito";
-		Assert.assertEquals(ExpectedTitle5, ActualTitle5, "El cambio se realizo");
-		System.out.println("El cambio de nombre se realizo exitosamente.");
-		
-		//Se cierra el navegador y la sesion en el servidor.
-		driver.close();
-		driver.quit();
-		System.out.println("El usuario se logro registrar exitosamente en el sistema.");
-		test5.info("TC05 completed.");
-		
-		
-		
-		/*Se crea el test Numero 5
-         * TC03 > Usuario intenta loguearse en el sistema con credenciales incorrectas.
+         * TC03 > Usuario nuevo se registra satisfactoriamente en el sistema.
          */
 		ExtentTest test3 = extent.createTest("TC03");
 		//Se inicia el navegador Chrome y se la la URL a la que se debe dirigir.
@@ -243,23 +148,120 @@ public class ExtentReport {
 		HomePage item3 = new HomePage(driver);
 		
 		//Se inicia un explicit wait para esperar la ventana emergente y cerrarla.
-		WebDriverWait wait3 = new WebDriverWait(driver,20);
-		wait3.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
-		closeButton = driver.findElement(By.className("dy-lb-close"));
+		WebDriverWait wait3 = new WebDriverWait(driver,40);
+		wait3.until(ExpectedConditions.visibilityOfElementLocated(By.id("testId-search-wrapper")));
+		closeButton = driver.findElement(By.id("testId-search-wrapper"));
+		/*wait4.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
+		closeButton = driver.findElement(By.className("dy-lb-close"));*/
 		item3.clickOnModal(closeButton);
 		test3.pass("Se cerro la ventana modal exitosamente.");
+		/*Se instancia la clase register para diligenciar los datos solicitados
+		 * para el registro de un usuario nuevo.
+		 */		
+		RegisterPage register = new RegisterPage(driver);
+		register.clickOnLogin();
+		register.clickOnNewRegister();
+		register.fillDataNewUser("Adriana", "Soto", "Cédula de Ciudadanía", "42058346", "3127842513", "jvxe8374@jermang.com", "Falabel123*");
+		test3.pass("Se llenaron todos los datos requeridos y se aceptan las condiciones.");
+		register.clickOnRegister();
+		test3.pass("Se espera el mensaje de que el usuario se creo correctamente.");
+
+		System.out.println("El usuario fue creado exitosamente.");
+		
+		//Se cierra el navegador y la sesion en el servidor.
+		driver.close();
+		driver.quit();
+		System.out.println("El usuario se logro registrar exitosamente en el sistema.");
+		test3.info("TC03 completed.");
+		
+		
+		
+        /*Se crea el test Numero 4
+         * TC04 > Usuario registrado cambia el nombre en el perfil.
+         */
+		ExtentTest test4 = extent.createTest("TC04");
+		//Se inicia el navegador Chrome y se la la URL a la que se debe dirigir.
+		System.setProperty("webdriver.chrome.driver", driverPath);
+		driver = new ChromeDriver();
+		driver.get(url);
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		
+		test4.log(Status.INFO, "Starting Test Case 04");
+		HomePage item4 = new HomePage(driver);
+		//Se inicia un explicit wait para esperar la ventana emergente y cerrarla.
+		WebDriverWait wait4 = new WebDriverWait(driver,20);
+		wait4.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
+		closeButton = driver.findElement(By.className("dy-lb-close"));
+		item4.clickOnModal(closeButton);
+		test4.pass("Se cerro la ventana modal exitosamente.");
+		/*Se instancia la clase login5 para iniciar sesion en el sistema
+		 */		
+		LoginPage login4 = new LoginPage(driver);
+		login4.fillCredentials("marionieto87@hotmail.com", "Imposible87*");
+		login4.clickOnLogin();
+		test4.pass("Se inicio sesion correctamente en el sistema.");
+		wait4.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@id='testId-UserAction-userinfo']//div[@id='']")));
+		driver.findElement(By.xpath("//li[@id='testId-UserAction-userinfo']//div[@id='']")).click();
+		login4.myAccount();
+		test4.pass("el usuario va a mi perfil correctamente");
+		wait4.until(ExpectedConditions.visibilityOfElementLocated(By.id("testId-Input-firstName")));
+		driver.findElement(By.id("testId-Input-firstName")).click();
+		InfoPersonalPage changes = new InfoPersonalPage(driver);
+		changes.changeNameUser(" Mario");
+		test4.pass("el usuario realiza el cambio y guarda los cambios");
+		changes.saveChanges();
+		wait4.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'Cambios guardados con éxito')]")));
+		driver.findElement(By.xpath("//h1[contains(text(),'Cambios guardados con éxito')]"));
+		/*Se obtiene el mensaje del elemento indicando que los cambios fueron guardados
+		 * con exito y se compara con el esperado para validar que los cambios fueron satisfactorios.
+		 */
+		String ActualTitle5 = driver.findElement(By.xpath("//h1[contains(text(),'Cambios guardados con éxito')]")).getText();
+		String ExpectedTitle5 = "Cambios guardados con éxito";
+		Assert.assertEquals(ExpectedTitle5, ActualTitle5, "El cambio se realizo");
+		System.out.println("El cambio de nombre se realizo exitosamente.");
+		
+		//Se cierra el navegador y la sesion en el servidor.
+		driver.close();
+		driver.quit();
+		System.out.println("El usuario se logro registrar exitosamente en el sistema.");
+		test4.info("TC04 completed.");
+		
+		
+		
+		
+		/*Se crea el test Numero 5
+         * TC05 > Usuario intenta loguearse en el sistema con credenciales incorrectas.
+         */
+		ExtentTest test5 = extent.createTest("TC05");
+		//Se inicia el navegador Chrome y se la la URL a la que se debe dirigir.
+		System.setProperty("webdriver.chrome.driver", driverPath);
+		driver = new ChromeDriver();
+		driver.get(url);
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		
+		test5.log(Status.INFO, "Starting Test Case 05");
+		HomePage item5 = new HomePage(driver);
+		
+		//Se inicia un explicit wait para esperar la ventana emergente y cerrarla.
+		WebDriverWait wait5 = new WebDriverWait(driver,20);
+		wait5.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
+		closeButton = driver.findElement(By.className("dy-lb-close"));
+		item5.clickOnModal(closeButton);
+		test5.pass("Se cerro la ventana modal exitosamente.");
 		/*Se instancia la clase loginFailed para diligenciar las credenciales incorrectas
 		 * y poder validar que no permita el ingreso del usuario.
 		 */
 		LoginPage loginFailed = new LoginPage(driver);
-		test3.pass("Se digitan las credenciales incorrectas.");
-		loginFailed.fillCredentials("adrimar_333@hotmail.com", "f6158d6fa");
+		test5.pass("Se digitan las credenciales incorrectas.");
+		loginFailed.fillCredentials("adrimar533@hotmail.com", "f6158d6fa");
 		loginFailed.clickOnLogin();
 		/*Se inicia un explicit wait para esperar el mensaje de que los 
 		 * datos son incorrectos.
 		 */
-		test3.pass("Se espera el mensaje de contraseña incorrecta.");
-		wait3.until(ExpectedConditions.visibilityOfElementLocated(By.className("login-form-module_form-alerts__1Bkgp")));
+		test5.pass("Se espera el mensaje de contraseña incorrecta.");
+		wait5.until(ExpectedConditions.visibilityOfElementLocated(By.className("login-form-module_form-alerts__1Bkgp")));
 		driver.findElement(By.className("login-form-module_form-alerts__1Bkgp"));
 		/*Se obtiene el mensaje de que los datos son incorrectos 
 		 * y se valida con el mensaje esperado.
@@ -267,14 +269,14 @@ public class ExtentReport {
 		String ActualTitle3 = driver.findElement(By.className("login-form-module_form-alerts__1Bkgp")).getText();
 		String ExpectedTitle3 = "Correo electrónico o contraseña incorrecta. Por favor, vuelve a intentarlo nuevamente.";
 		Assert.assertEquals(ExpectedTitle3, ActualTitle3, "Credenciales incorrectas");
-		test3.pass("Se valida el mensaje correcto de: Correo electrónico o contraseña incorrecta.");
+		test5.pass("Se valida el mensaje correcto de: Correo electrónico o contraseña incorrecta.");
 		System.out.println("El usuario no pudo iniciar sesion por que digito credenciales incorrectas.");
 		
 		//Se cierra el navegador y la sesion en el servidor.
 		driver.close();
 		driver.quit();
 		System.out.println("El usuario no se logueo por que no digito las credenciales correctas.");
-		test3.info("TC03 completed.");
+		test5.info("TC05 completed.");
 		
 		
 		

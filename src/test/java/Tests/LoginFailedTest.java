@@ -17,6 +17,7 @@ import Pages.LoginPage;
 
 public class LoginFailedTest {
 	WebDriver driver;
+	WebDriver closeButtonModal;
 	String driverPath = "..\\Falabella\\Drivers\\chromedriver.exe";
 	String url = "https://www.falabella.com.co/falabella-co";
 	private static WebElement closeButton = null;
@@ -32,6 +33,7 @@ public class LoginFailedTest {
 		driver.get(url);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
+		
 	}
 	@Test
 	public void loginFailed() {
@@ -43,7 +45,7 @@ public class LoginFailedTest {
 		closeButton = driver.findElement(By.className("dy-lb-close"));
 		item.clickOnModal(closeButton);
 		
-		loginFailed.fillCredentials("adrimar_333@hotmail.com", "f6158d6fa");
+		loginFailed.fillCredentials("marion87@hotmail.com", "f6158d6fa");
 		loginFailed.clickOnLogin();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("login-form-module_form-alerts__1Bkgp")));
 		driver.findElement(By.className("login-form-module_form-alerts__1Bkgp"));
@@ -58,5 +60,6 @@ public class LoginFailedTest {
 	@AfterSuite
 	public void tearDown() {
 		driver.close();
+		driver.quit();
 	}
 }

@@ -8,7 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,6 +16,7 @@ import Pages.LoginPage;
 
 public class LoginTest {
 	WebDriver driver;
+	WebDriver closeButtonModal;
 	String driverPath = "..\\Falabella\\Drivers\\chromedriver.exe";
 	String url = "https://www.falabella.com.co/falabella-co";
 	private static WebElement closeButton = null;
@@ -32,6 +32,7 @@ public class LoginTest {
 		driver.get(url);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
+		
 	}
 	/*Titulo: Prueba de automatización.
 	 * Autor: Carlos Mario Nieto.
@@ -39,12 +40,14 @@ public class LoginTest {
 	 * loguee exitosamente en el sistema*/
 	@Test
 	public void login() {
-		HomePage item = new HomePage(driver);
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("dy-lb-close")));
-		//driver.findElement(By.className("dy-lb-close")).click();
+		driver.findElement(By.className("dy-lb-close")).click();
 		closeButton = driver.findElement(By.className("dy-lb-close"));
+		
+		HomePage item = new HomePage(driver);
 		item.clickOnModal(closeButton);
+		
 		LoginPage login = new LoginPage(driver);
 		login.fillCredentials("marionieto87@hotmail.com", "Imposible87*");
 		login.clickOnLogin();
@@ -57,14 +60,16 @@ public class LoginTest {
 		String ExpectedUrl = "https://www.falabella.com.co/falabella-co/myaccount/userPersonalInformation";
 		Assert.assertEquals(ExpectedUrl, currentUrl, "Credenciales correctas");
 		System.out.println("El usuario inicio sesion con éxito.");
-		
-	}
 
+
+	}	
+		
 	
-	/* Descripción: Cierra el navegador una ves se termina la prueba.*/
 	@AfterSuite
 	public void tearDown() {
-		driver.close();
-		driver.quit();
+	driver.close();
+	driver.quit();
 	}
+
+
 }

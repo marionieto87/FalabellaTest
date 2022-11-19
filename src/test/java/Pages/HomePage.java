@@ -14,7 +14,7 @@ public class HomePage {
 	WebElement btnCloseBanner;*/
 	
 	@FindBy(className="dy-lb-close")
-	WebElement btnCloseBanner2;
+	WebElement btnCloseBanner;
 	
 	@FindBy(id="testId-SearchBar-Input")
 	WebElement navSearch;
@@ -39,14 +39,10 @@ public class HomePage {
 	
 	public void clickOnModal(WebElement closeButton) {
 		if(closeButton.isDisplayed()) 
-			btnCloseBanner2.click();
+			btnCloseBanner.click();
 	}
 	
-	public void clickOnModal2() {
-		if(btnCloseBanner2.isDisplayed()) 
-			btnCloseBanner2.click();
-	}
-	
+
 	public void searchItem(String item) {
 		navSearch.sendKeys("iPhone");
 	}

@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Pages.HomePage;
 
-public class HomeTest {
+public class SearchTest {
 	WebDriver driver;
 	String driverPath = "..\\Falabella\\Drivers\\chromedriver.exe";
 	String url = "https://www.falabella.com.co/falabella-co";
@@ -64,5 +64,6 @@ public class HomeTest {
 	@AfterSuite
 	public void tearDown() {
 		driver.close();
+		driver.quit();
 	}
 }
